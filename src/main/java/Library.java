@@ -20,4 +20,8 @@ public class Library {
         }
     }
 
+    public Book loanBook(){
+        return this.books.remove(0);
+    }
+
 }

@@ -15,6 +15,7 @@ public class LibraryTest {
     Book book4;
     Book book5;
     Book book6;
+    Borrower borrower;
 
     @Before
     public void setup(){
@@ -37,6 +38,9 @@ public class LibraryTest {
         testFullLibrary.add(book4);
         testFullLibrary.add(book5);
         fullLibrary = new Library(testFullLibrary);
+
+        ArrayList<Book> testBookBorrowed = new ArrayList<Book>();
+        borrower = new Borrower("Hazel", testBookBorrowed);
     }
 
     @Test
@@ -51,10 +55,17 @@ public class LibraryTest {
         assertEquals(4, library.bookCount());
     }
 
-    @Test public void testBookNotAddedAsStockFull(){
+    @Test
+    public void testBookNotAddedAsStockFull(){
         book6 = new Book("Natives: Race and Class in the Ruins of Empire", "Akala", "Non-Fiction");
         fullLibrary.addBook(book6);
         assertEquals(5, fullLibrary.bookCount());
+    }
+
+    @Test
+    public void removeBookFromLibrary(){
+        library.loanBook();
+        assertEquals(2, library.bookCount());
     }
 
 }
